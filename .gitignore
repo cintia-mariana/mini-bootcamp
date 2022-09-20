@@ -348,3 +348,4 @@ MigrationBackup/
 
 # Ionide (cross platform F# VS Code tools) working folder
 .ionide/
+Training/cmp-databinding-start/cmp-databinding-start/.angular/cache/*
