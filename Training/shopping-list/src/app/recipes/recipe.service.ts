@@ -12,26 +12,31 @@ const imagenDefault = 'https://th.bing.com/th/id/OIP.TQ6I-KjX3ZR9yyybkRQ4HQHaDt?
 export class RecipeService {
     
     recipesChanged= new Subject<Recipe []>();
-    private recipes: Recipe[] = [
-        new Recipe(
-          'Tasty  schnizel',
-           'A super-tasty Schnizel-just awesome!',
-            imagenDefault,[
-              new Ingredient('Meat',1),
-              new Ingredient('French Fries', 20)
+    // private recipes: Recipe[] = [
+    //     new Recipe(
+    //       'Tasty  schnizel',
+    //        'A super-tasty Schnizel-just awesome!',
+    //         imagenDefault,[
+    //           new Ingredient('Meat',1),
+    //           new Ingredient('French Fries', 20)
               
-            ]),
-        new Recipe('Big fat burguer',
-         'what else you need to say?',
-         'https://th.bing.com/th/id/OIP.hCXsT6DE8Dt0A0KsQzmKZwHaF0?pid=ImgDet&rs=1',[
-            new Ingredient('Buns',1),
-            new Ingredient('Meat', 1)
-          ]),
-      ];
+    //        ]),
+    //     new Recipe('Big fat burguer',
+    //      'what else you need to say?',
+    //      'https://th.bing.com/th/id/OIP.hCXsT6DE8Dt0A0KsQzmKZwHaF0?pid=ImgDet&rs=1',[
+    //        new Ingredient('Buns',1),
+    //         new Ingredient('Meat', 1)
+    //       ]),
+    //   ];
+      private recipes: Recipe[] = [];
 
-      constructor(private slService: ShoppingListService){
+      constructor(private slService: ShoppingListService){}
+        setRecipes(recipes: Recipe[]){
+          this.recipes= recipes;
+          this.recipesChanged.next(this.recipes.slice());
+        }
 
-      }
+
       getRecipes(){
         return this.recipes.slice();
       }
