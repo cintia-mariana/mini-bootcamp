@@ -9,8 +9,9 @@ import { RecipeService } from '../recipe.service';
   styleUrls: ['./recipe-detail.component.css']
 })
 export class RecipeDetailComponent implements OnInit {
-      recipe: Recipe;
-      id: number;
+  recipe: Recipe;
+  id: number;
+  shareUrl: string;
 
   constructor(private recipeService: RecipeService,
               private route: ActivatedRoute,
@@ -22,7 +23,7 @@ export class RecipeDetailComponent implements OnInit {
     (params: Params) =>{
       this.id = +params['id'];
       this.recipe=this.recipeService.getRecipe(this.id);
-      
+      this.shareUrl = 'http://' + document.location.hostname + '/recipes/' + this.id;
     }
   );
   }
