@@ -22,12 +22,18 @@ export class AuthService {
     token: string = null;
     private tokenExpirationTimer: any;
 
+
+    urlNode = 'http://localhost:8082/api/usuarios';
+    //urlFirebase= 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key='+ environment.firebaseAPIKey;
+
+    
+
   constructor(private http: HttpClient, private router: Router) {}
 
   signUp(email: string, password: string){
 
     return this.http.post<AuthResponseData>(
-      'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=' + environment.firebaseAPIKey,
+      this.urlNode+'/signup',
       {
         email: email,
         password: password,
@@ -48,8 +54,12 @@ export class AuthService {
   }
 
   login(email: string, password:string) {
+
+    
+    console.log('a punto de mandar login');
+    
     return this.http.post<AuthResponseData>(
-      'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key='+ environment.firebaseAPIKey,
+      this.urlNode+'/login',
       {
         email: email,
         password: password,
